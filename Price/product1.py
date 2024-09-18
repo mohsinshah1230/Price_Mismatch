@@ -52,8 +52,8 @@ try:
                 # Extract bounding box coordinates and labels
                 for box in result.boxes:
                     x1, y1, x2, y2 = map(int, box.xyxy[0])  # Bounding box coordinates
-                    label = box.cls  # Class label
-                    conf = box.conf  # Confidence score
+                    label = int(box.cls.item())  # Class label (convert to int)
+                    conf = float(box.conf.item())  # Confidence score (convert to float)
 
                     # Draw bounding box and label on the image
                     cv2.rectangle(color_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
